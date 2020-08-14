@@ -1,0 +1,6 @@
+<!--pages/map/map.wxml-->
+
+<!--map.wxml-->
+<map longitude="{{longitude}}" latitude="{{latitude}}" scale='16'  enable-rotate="true" rotate="360" show-compass="true" show-location="true">
+  <cover-view class=".location_tips">你当前的所在位置如下</cover-view>
+</map>

@@ -1,0 +1,44 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/map/map",
+    "pages/mine/mine"  
+  ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "授权位置信息用于小程序位置接口的使用"
+    }
+  },
+  "window": {
+    "navigationBarBackgroundColor": "#ffc0cb",
+    "navigationBarTitleText": "简看天气",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#ffffff",
+    "backgroundTextStyle": "dark"
+  },
+  "tabBar": {
+    "color": "#bfbfbf",
+    "selectedColor": "#ffc0cb",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "assets/icons/home.png",
+        "selectedIconPath": "assets/icons/achome.png"
+      },
+      {
+        "pagePath": "pages/map/map",
+        "text": "地图",
+        "iconPath": "assets/icons/map.png",
+        "selectedIconPath": "assets/icons/acmap.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "assets/icons/mine.png",
+        "selectedIconPath": "assets/icons/acmine.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

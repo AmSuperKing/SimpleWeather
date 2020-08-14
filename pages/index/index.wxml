@@ -1,0 +1,183 @@
+<!--index.wxml-->
+<view class="page">
+  <!-- nav -->
+  <view class="nav">
+  <image class="img" src="../../assets/icons/icon.png" bindtap="search"></image>
+    <input class="ipt" placeholder-class="pla" placeholder='输入城市名查询天气,如广州市输入广州即可' bindconfirm='finish' value='{{value}}' bindinput ="cityWordInput"></input>
+  </view>
+  <!-- END nav -->
+
+  <!-- user -->
+  <view class="user">
+    <view class="userAvatar">
+      <open-data type="userAvatarUrl"></open-data>
+    </view>
+    <view class="userNick">
+      <open-data type="userNickName"></open-data>
+    </view>
+  </view>
+  <!-- END user -->
+
+  <!-- location -->
+  <view class="map">
+    <view class="l-box">
+      <image class="img" src="../../assets/icons/location.png"></image>
+      <text class="loc">{{weather.city}}</text>
+    </view>
+    <text class="r-box">{{weather.week }} {{ weather.update_time}} 更新</text>
+  </view>
+  <!-- END location -->
+
+  <!-- weather -->
+  <view class="info">
+    <view class="tem">
+      {{weather.tem}}<text>℃</text>
+    </view>
+    <view><image class="today_wea_img" src="/weaicon/{{weather.wea_img}}.png"></image></view>
+    <text class="wea">{{weather.wea}}</text>
+    <text>\n</text>
+    <text class="air_level">空气质量指数：{{weather.air }}  {{ weather.air_level}}</text>
+    <text>\n</text>
+  </view>
+  <!-- END weather -->
+
+  <!-- 描述 -->
+  <view class="other">相关指数</view>
+  <view class="detail">
+    <view class='item'>
+      <text>温度(℃)</text>
+      <text>{{weather.tem2}}~{{weather.tem1}}</text>
+    </view>
+    <view class='item'>
+      <text>湿度(%)</text>
+      <text>{{humidity}}</text>
+    </view>
+    <view class='item'>
+      <text>PM2.5</text>
+      <text>{{weather.air_pm25}}</text>
+    </view>
+    <view class='item'>
+      <text>气压(hPa)</text>
+      <text>{{weather.pressure}}</text>
+    </view>
+    <view class='item'>
+      <text>风向</text>
+      <text>{{weather.win}}</text>
+    </view>
+    <view class='item'>
+      <text>风速</text>
+      <text>{{weather.win_meter}}</text>
+    </view>
+    <view class='item'>
+      <text>风速等级</text>
+      <text>{{weather.win_speed}}</text>
+    </view>
+    <view class='item'>
+      <text>能见度</text>
+      <text>{{weather.visibility}}</text>
+    </view>
+  </view>
+
+  <!-- 7日天气 -->
+  <view class='weekday'>7日天气</view>
+  <scroll-view scroll-x="true" class="scroll-view_H">
+    <view class='scroll-view-item_H' wx:for="{{weatherweek.data}}" wx:key="key_list">
+      <view>{{item.day}}</view>
+      <view>{{item.tem2}}~{{item.tem1}}</view>
+      <view class="wea">{{item.wea}}
+      <image class="wea_img" src='../../weaicon/{{item.wea_img}}.png'></image>
+      </view>
+      <view>{{item.win[0]}}{{item.win_speed}}</view>
+    </view>
+  </scroll-view>
+  
+  <text>\n</text>
+
+  <view class='hours'>逐3小时预报</view>
+  <scroll-view scroll-x="true" class="hours_scroll-view_H">
+    <view class='hours_scroll-view-item_H' wx:for="{{weatherweek.data[0].hours}}" wx:key="key_list">
+      <view class="hours_detail">
+        <view class='hours_item'>
+          <text>温度(℃)</text>
+          <text>{{item.tem}}</text>
+        </view>
+        <view class='hours_item'>
+          <text>天气</text>
+          <text>{{item.wea}}</text>
+        </view>
+        <view class='hours_item'>
+          <text>风向</text>
+          <text>{{item.win}}</text>
+        </view> 
+        <view class='hours_item'>
+          <text>风速等级</text>
+          <text>{{item.win_speed}}</text>
+        </view>
+      </view>
+      <view>{{item.day}}</view>
+    </view>
+  </scroll-view>
+
+  <text>\n</text>
+
+  <view class='pad'>生活Tips</view>
+  <view class="tips">
+    <image class="tips_img" src="../../assets/icons/sun.png"></image>
+    <view class="tips_content">
+    <text>{{weatherweek.data[0].index[0].level}}</text>
+    <text class="tips_content_text">{{weatherweek.data[0].index[0].desc}}</text>
+    </view>
+  </view>
+  <view class="tips">
+    <image class="tips_img" src="../../assets/icons/run.png"></image>
+    <view class="tips_content">
+    <text >运动指数 </text>
+    <text class="tips_content_text">{{weatherweek.data[0].index[1].desc}}</text>
+    </view>
+  </view>
+  <view class="tips">
+    <image class="tips_img" src="../../assets/icons/health.png"></image>
+    <view class="tips_content">
+    <text>{{weatherweek.data[0].index[2].level}}</text>
+    <text class="tips_content_text">{{weatherweek.data[0].index[2].desc}}</text>
+    </view>
+  </view>
+  <view class="tips">
+    <image class="tips_img" src="../../assets/icons/suit.png"></image>
+    <view class="tips_content">
+    <text>{{weatherweek.data[0].index[3].title}} {{weatherweek.data[0].index[3].level}}</text>
+    <text class="tips_content_text">{{weatherweek.data[0].index[3].desc}}</text>
+    </view>
+  </view>
+  <view class="tips">
+    <image class="tips_img" src="../../assets/icons/washcar.png"></image>
+    <view class="tips_content">
+    <text>{{weatherweek.data[0].index[4].title}} {{weatherweek.data[0].index[4].level}}</text>
+    <text class="tips_content_text">{{weatherweek.data[0].index[4].desc}}</text>
+    </view>
+  </view>
+  <view class="tips">
+    <image class="tips_img" src="../../assets/icons/face.png"></image>
+    <view class="tips_content">
+    <text>{{weatherweek.data[0].index[5].title}} {{weatherweek.data[0].index[5].level}}</text>
+    <text class="tips_content_text">{{weatherweek.data[0].index[5].desc}}</text>
+    </view>
+  </view>
+
+  <text>\n</text>
+
+  <view>
+      <block>
+        <view class="yiyan">
+          <text>\n</text>
+          <view class="yiyan_text"><text>{{yiyan.hitokoto}}</text></view>
+          <text>\n</text>
+          <view class="yiyan_from"> <text decode='true'>--《{{yiyan.from}}》</text> </view>
+          <button bindtap="click" class="btn">一言</button>
+        </view> 
+      </block>
+    </view>
+
+  <view class="copyright">Copyright © 简看天气</view>
+
+</view>
